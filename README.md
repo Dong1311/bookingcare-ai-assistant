@@ -2,6 +2,8 @@
 
 Bài sơ khảo Fullstack Engineer – AI Product Builder. Giao diện React hỗ trợ tra cứu bác sĩ, chuyên khoa, cơ sở y tế, dịch vụ và FAQ từ các trang công khai của BookingCare. Người dùng tiếp tục chọn và xác nhận lịch trên BookingCare.
 
+[Mở website demo](https://bookingcare.dong1311.com)
+
 ## Chạy sau khi clone
 
 Yêu cầu Node.js 24+ và npm. Repo đi kèm [KB BookingCare](data/bookingcare.json) và [chỉ mục vector](data/vectors.json) khớp với nhau. Có thể chạy ngay từ bản dữ liệu đã đóng gói.
