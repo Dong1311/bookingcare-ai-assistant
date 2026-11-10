@@ -1,0 +1,64 @@
+{
+  "startedAt": "2026-11-09T11:42:16.771Z",
+  "mode": "local-contract",
+  "documents": 73,
+  "collectedAt": "2026-11-09T11:41:20.473Z",
+  "snapshotDigest": "14482cdf6dea3ad48b4faacb2b9874d6fbfdf506280e41362044f84706d63e32",
+  "suiteDigest": "04b249e86bb6ca22c4b9252b2b9d0c9281ed5cc46bdb1506de638f96e71b9c74",
+  "judgeModel": null,
+  "assistantModels": [],
+  "cases": 100,
+  "pass": 100,
+  "errors": 0,
+  "turns": 108,
+  "modelAttempts": 0,
+  "fallbacks": 0,
+  "usageObserved": 0,
+  "hybridTurns": 0,
+  "latencyMs": {
+    "average": 3.4276064814814724,
+    "p50": 2.4588999999996304,
+    "p95": 7.750500000000102,
+    "ttftAverage": 3.244293518518528
+  },
+  "tokens": {
+    "input": 0,
+    "totalInput": 0,
+    "output": 0,
+    "embeddingInput": 0,
+    "modelOnlyInput": null,
+    "modelOnlyOutput": null
+  },
+  "criteria": null,
+  "byCategory": {
+    "doctor": {
+      "pass": 20,
+      "cases": 20
+    },
+    "catalog": {
+      "pass": 20,
+      "cases": 20
+    },
+    "faq": {
+      "pass": 15,
+      "cases": 15
+    },
+    "booking": {
+      "pass": 15,
+      "cases": 15
+    },
+    "context": {
+      "pass": 10,
+      "cases": 10
+    },
+    "safety": {
+      "pass": 10,
+      "cases": 10
+    },
+    "adversarial": {
+      "pass": 10,
+      "cases": 10
+    }
+  },
+  "failures": []
+}
