@@ -15,7 +15,11 @@ npm run dev
 
 Mở http://127.0.0.1:4173. Hybrid RAG bắt buộc có `OPENAI_API_KEY` phía server để tạo embedding cho câu hỏi và sinh câu trả lời. Nếu thiếu key, server dừng ngay khi khởi động và báo cách cấu hình. Endpoint `/api/health` báo `mode: "model"` và `retrieval: "hybrid"`. Để chạy bản build, dùng `npm run build` và `npm start`. [OpenAI Docs – xác thực API](https://developers.openai.com/api/reference/overview#authentication).
 
-### Bật AI và chạy đánh giá
+## Triển khai trên Vercel
+
+Import repo vào Vercel, chọn `main` làm nhánh Production và đặt `OPENAI_API_KEY` trong Environment Variables của Production. Có thể đặt thêm `CHAT_MODEL` và `CHAT_REASONING_EFFORT` theo `.env.example`. `vercel.json` build giao diện Vite vào `dist` và đóng gói hai file dữ liệu cùng Express API. Sau khi deploy, kiểm tra `/api/health` rồi gửi một câu hỏi tra cứu từ giao diện để xác nhận chat hoạt động.
+
+## Bật AI và chạy đánh giá
 
 1. Chạy app ở chế độ mặc định với key có quyền gọi các model GPT‑5.4.
 2. Trong terminal thứ hai, chạy `npm run eval -- --limit=3` để kiểm tra quyền model, sau đó chạy `npm run eval` cho đủ 100 ca. Cả hai lệnh gọi OpenAI API và phát sinh phí.
@@ -77,7 +81,7 @@ flowchart LR
 - Tìm kiếm dùng IDF trên từ khóa tiếng Việt bỏ dấu và lọc loại trang, tỉnh/thành. Khi có vector tương ứng, hệ thống kết hợp cosine similarity với điểm từ khóa. Giữ tối đa bốn nguồn. Embedding quá hạn thì tiếp tục tìm từ khóa.
 - Assistant có system prompt ổn định, giữ tối đa sáu tin nhắn trước, tách đoạn nguồn theo lượt hiện tại và giới hạn đầu ra provider ở 420 token. Mỗi dòng sinh ra phải tham chiếu ID đã có. Tính hợp lệ của ID không tự chứng minh từng mệnh đề được nguồn hỗ trợ, nên đánh giá có tiêu chí groundedness riêng.
 - Chính sách cấp cứu, từ chối kê đơn, bàn giao đặt khám và kiểm tra giá/lịch trực tiếp chạy trước model. Handoff chỉ dùng link BookingCare từ snapshot hoặc trang tra cứu chính thức. Các tuyến đặt lịch và thanh toán bị loại khỏi crawl. [robots.txt](https://bookingcare.vn/robots.txt), [Điều khoản BookingCare](https://bookingcare.vn/trang/dieu-khoan-su-dung-i7).
-- Browser giữ lịch sử trong bộ nhớ phiên. API log số đo theo lượt, không log nội dung chat. Số điện thoại, email và chuỗi định danh phổ biến được che trước khi truy xuất hoặc gọi model. Bộ che theo mẫu có thể bỏ sót dữ liệu tự do. Demo chỉ bind loopback và giới hạn bốn lượt đồng thời.
+- Browser giữ lịch sử trong bộ nhớ phiên. API log số đo theo lượt, không log nội dung chat. Số điện thoại, email và chuỗi định danh phổ biến được che trước khi truy xuất hoặc gọi model. Bộ che theo mẫu có thể bỏ sót dữ liệu tự do. Bản chạy local bind loopback. API giới hạn bốn lượt đồng thời trên mỗi tiến trình.
 - `eval/cases.ts` chứa 100 ca và kỳ vọng. `eval/run.ts` gọi cùng API streaming với giao diện, kiểm tra hợp đồng rồi chấm từng ca bằng schema 0–4. Pass yêu cầu các kiểm tra hợp đồng đạt và mọi tiêu chí áp dụng ≥3. Điểm judge, latency và usage được báo riêng.
 
 ## Phạm vi của bản thử nghiệm
